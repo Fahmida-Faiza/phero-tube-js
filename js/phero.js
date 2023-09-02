@@ -96,15 +96,44 @@ phones.forEach(phone =>{
   const phoneCard = document.createElement("div");
 
   phoneCard.classList = `card p-4 bg-base-100 `;
+
+  //faiza
+   let second = phone.others.posted_date;
+
+   console.log(second);
+   let minutes = 0;
+   let hours = 0;
+
+   hours = parseInt(second / 3600);
+   console.log(hours);
+
+   second = parseInt(second % 3600);
+   minutes = parseInt(second / 60);
+   console.log(minutes);
+
+   second = parseInt(second % 60);
+   console.log(second);
   //step3: set inner html gula
   phoneCard.innerHTML = `
     
-    <figure><img src="${phone.thumbnail}" alt="Shoes" class="w-80 h-52" /></figure>
+    <figure><img src="${phone.thumbnail}" alt="Shoes" class="w-80 h-52" />
+              <div class="absolute">
+            ${
+              phone.others.posted_date > 0
+                ? `<p class="relative left-20 top-20 bg-black text-white px-1 py-1 rounded-md text-xs w-32 text-center">${hours}hrs ${minutes}min ago</p>`
+                : ``
+            } 
+
+          </div>
+    </figure>
             <div class="card-body">
             
             <div class="flex gap-6">
 
-                <figure><img src=${phone.authors[0].profile_picture} alt="Shoes" class="w-10 h-10 rounded-full" /></figure>
+                <figure><img src=${
+                  phone.authors[0].profile_picture
+                } alt="Shoes" class="w-10 h-10 rounded-full" />
+                </figure>
                 <div>
                     <h2 class="card-title">${phone.title}</h2>
                     <p class="py-2">${phone.authors[0].profile_name}</p>
