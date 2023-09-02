@@ -18,9 +18,9 @@ const buttonContainer = document.getElementById("button-container");
 allbuttons.forEach(allbutton =>{
     // console.log(allbutton)
     const buttonCard = document.createElement('div');
-    buttonCard.classList = `btn btn-xs sm:btn-sm md:btn-md lg:btn-lg`;
+    buttonCard.classList = `btn  btn-error btn-outline btn-xs sm:btn-sm md:btn-md  mx-3`;
     buttonCard.innerHTML = `
-     <button class="btn" onclick='loadPhone(${allbutton.category_id})'>${allbutton.category}</button>
+     <button onclick='loadPhone(${allbutton.category_id})'>${allbutton.category}</button>
        
        
     `;
