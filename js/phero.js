@@ -10,7 +10,7 @@ const loadButton = async () =>{
     // console.log(allbuttons);
 }
 const displayButtons = allbuttons =>{
-    console.log(allbuttons);
+    // console.log(allbuttons);
 
 
 //loop forEach diye single dekhaby 
@@ -20,10 +20,11 @@ allbuttons.forEach(allbutton =>{
     const buttonCard = document.createElement('div');
     buttonCard.classList = `btn btn-xs sm:btn-sm md:btn-md lg:btn-lg`;
     buttonCard.innerHTML = `
-     <button class="btn">${allbutton.category}</button>
+     <button class="btn" onclick='loadPhone(${allbutton.category_id})'>${allbutton.category}</button>
        
        
     `;
+    console.log(allbutton.category);
     buttonContainer.appendChild(buttonCard)
 
 })
@@ -32,9 +33,9 @@ allbuttons.forEach(allbutton =>{
 
 //main part
 
-const loadPhone = async () =>{
+const loadPhone = async (categoryId) =>{
     const res = await fetch(
-      "https://openapi.programming-hero.com/api/videos/category/1000"
+      `https://openapi.programming-hero.com/api/videos/category/${categoryId}`
     );
 
     const data = await res.json();
@@ -47,6 +48,45 @@ const displayPhones = phones =>{
 console.log(phones)
   const phoneContainer = document.getElementById("phone-container");
 phoneContainer.innerHTML="";
+// ....................................................................
+
+
+if (phones.length === 0) {
+  console.log("no found");
+
+  phoneContainer.classList.remove(
+    "grid",
+    "grid-cols-1",
+    "md:grid-cols-2",
+    "lg:grid-cols-4",
+    "gap-4"
+  );
+
+  phoneContainer.innerHTML = `
+<div class="flex flex-col text-center items-center text-3xl font-bold mt:20 lg:mt-40">
+<div>
+  <img src="image/Icon.png" alt="">
+</div>
+<div>
+  <p>Oops!! Sorry, There is no <br> content here</p>
+</div>
+</div>
+
+`;
+} 
+else {
+  phoneContainer.classList.add(
+    "grid",
+    "grid-cols-1",
+    "md:grid-cols-2",
+    "lg:grid-cols-4",
+    "gap-3"
+  );
+}
+
+
+
+// ....................................................................
 //loop forEach diye single single dekhabey phone gula
 phones.forEach(phone =>{
   // console.log(phone)
@@ -88,4 +128,5 @@ phones.forEach(phone =>{
 
 loadButton();
 
-loadPhone();
+loadPhone(1000);
+
